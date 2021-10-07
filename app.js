@@ -1,15 +1,16 @@
+//Imports
 const express = require('express')
 const app = express()
 
+//Route
 const productRoutes = require('./api/routes/products')
 
+//Middleware
 app.use('/product', productRoutes)
 
-app.use((req, res, next) => {
-    res.status(200).send({
-        message: "It Works"
-    });
-    console.log("App server is running!")
-}) // <- use == middleware | it will be called everytime we call the API
+app.get('/', (req, res)=> {
+    res.send("We are Online")
+})
 
-module.exports = app
+//Web Server
+var server = app.listen(process.env.PORT||3000)

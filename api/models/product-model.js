@@ -1,20 +1,20 @@
-const express = require("express")
-const Category = require("./category-model")
-const Schema = express.Schema
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const categorySchema = new Schema({
     category_name : String,
 })
 
-const variantSchema = new Schema({
-    variant_name : String,
-    options : [optionSchema]
-})
 
 const optionSchema = new Schema({
     option_name : String,
     option_desc : String,
     // image
+})
+
+const variantSchema = new Schema({
+    variant_name : String,
+    options : [optionSchema]
 })
 
 const wholesaleSchema = new Schema({

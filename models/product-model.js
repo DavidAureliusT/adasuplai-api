@@ -5,7 +5,6 @@ const categorySchema = new Schema({
     category_name : String,
 })
 
-
 const optionSchema = new Schema({
     option_name : String,
     option_desc : String,

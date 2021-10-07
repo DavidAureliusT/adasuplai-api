@@ -104,3 +104,4 @@ dist
 .tern-port
 
 # Static folder
+/uploads

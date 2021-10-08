@@ -16,7 +16,6 @@ app.use('/uploads',express.static("uploads"))
 app.use(express.json())
 
 //Route
-const productRoutes = require('./routes/products')
 const createProductRoute = require("./routes/product/createProduct")
 const fetchProductRoute = require("./routes/product/fetchProduct")
 const deleteProductRoute = require("./routes/product/deleteProduct")
@@ -24,12 +23,12 @@ const updateProductRoute = require("./routes/product/updateProduct")
 const authRoute = require("./routes/authentication/auth")
 
 //Middleware
-app.use('/product', productRoutes)
-app.use('/createProduct', createProductRoute)
-app.use("/fetchProduct", fetchProductRoute)
-app.use("/deleteProduct", deleteProductRoute)
-app.use("/updateProduct", updateProductRoute)
+app.use('/product/create', createProductRoute)
+app.use("/product/fetch", fetchProductRoute)
+app.use("/product/delete", deleteProductRoute)
+app.use("/product/update", updateProductRoute)
 app.use("/api/user", authRoute)
+
 
 //Web Server
 var server = app.listen(process.env.PORT||3000)

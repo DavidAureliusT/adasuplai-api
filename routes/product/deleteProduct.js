@@ -3,12 +3,11 @@ const express = require('express')
 //for routing
 const router = express.Router()
 
-var productData = require('../../models/product')
+var productData= require('../../models/product-model')
 
-// DELETE 
 router.post("/", (req,res) =>{
     productData.findOneAndRemove({
-        _id: req.get("id")
+        _id: req.get("_id")
     }, (err) => {
         console.log("Failed" + err)
     })

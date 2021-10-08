@@ -3,22 +3,23 @@ const express = require('express')
 //for routing
 const router = express.Router()
 
-var productData = require('../../models/product')
+var productData = require('../../models/product-model')
 
 // FETCH 
-router.get('/', (req, res) => {
-    productData.find({}).then((DBitems) => { 
-        res.send(DBitems)
-    })
-})
-
-router.get('/:productId', async (req,res, next) => {
-    try{
-    const id = await productData.findById(req.params.productId)
-    res.send(id)
-    } catch(err){
-        res.send({message: err})
+router.get('/', async (req, res) => {
+    if(req.get("_id") != ""){
+        try{
+        const id = await productData.findById(req.get("_id"))
+        res.send(id)
+        } catch(err){
+            res.send({message: err})
+        }
+    } else {
+        productData.find({}).then((DBitems) => { 
+            res.send(DBitems)
+        })
     }
 })
+
 
 module.exports = router

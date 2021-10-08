@@ -30,13 +30,14 @@ const productSchema = new Schema({
     min_order : Number,
     weight : Number,
     weight_unit : String,
-    annotations : [String],
-    etalase : String,
+    // annotations : [String],
+    // etalase : String,
     description : String,
     sku : String,
     stock : Number,
-    wholesale :[wholesaleSchema],
-    variant : variantSchema
+    image : String
+    // wholesale :[wholesaleSchema],
+    // variant : variantSchema
 })
 
 const Product = mongoose.model("products", productSchema)

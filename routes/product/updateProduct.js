@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-var productData = require('../../models/product')
+var productData = require('../../models/product-model')
+
 
 //multer = used for handling multipart/form-data, which is primarily used for uploading files
 const multer = require('multer')
@@ -77,3 +78,27 @@ router.post("/",upload.single("image"),(req,res)=> {
 })
 
 module.exports = router
+
+
+// router.post("/", (req,res) => {
+//     productData.findOneAndUpdate({
+//         _id: req.get("_id")
+//     }, {
+//         name : req.get("name"), 
+//         supplier_id : req.get("supplier_id"),
+//         category_id : req.get("category_id"),
+//         price : req.get("price"),
+//         status : req.get("status"),
+//         min_order : req.get("min_order"),
+//         weight : req.get("weight"),
+//         weight_unit : req.get("weight_unit"),
+//         description : req.get("description"),
+//         sku : req.get("sku"),
+//         stock : req.get("stock"),
+//         image : req.file.path
+//     }, (err) => {
+
+//         console.log("Failed to update" + err)
+//     })
+//     res.send("Updated!")
+// })

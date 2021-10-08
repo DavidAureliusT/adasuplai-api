@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 //multer = used for handling multipart/form-data, which is primarily used for uploading files
 const multer = require('multer')
-const productData = require('../../models/product')
+const productData = require('../../models/product-model')
 //allows you to adjust how files get stored
 //cb(null) = if error pass null. if pass error it will crash.
 const storage = multer.diskStorage({
@@ -44,18 +44,21 @@ const upload = multer({storage: storage, limits: {
 router.post("/", upload.single("image"), (req,res) => {
     console.log(req.file)
     var product = new productData({
-        sku: req.get("sku"),
-        name: req.get("name"),
-        price: req.get("price"),
-        weight: req.get("weight"),
-        descriptions: req.get("descriptions"),
-        image: req.file.path,
-        category: req.get("category"),
-        create_date: req.get("create_date"),
-        stock: req.get("stock"),
+        name : req.get("name"), 
+        supplier_id : req.get("supplier_id"),
+        category_id : req.get("category_id"),
+        price : req.get("price"),
+        status : req.get("status"),
+        min_order : req.get("min_order"),
+        weight : req.get("weight"),
+        weight_unit : req.get("weight_unit"),
+        description : req.get("description"),
+        sku : req.get("sku"),
+        stock : req.get("stock"),
+        image : req.file.path
     })
 
-//save into database
+    //save into database
     product.save().then(()=> {
         if(product.isNew == false){
             console.log("Saved data!")

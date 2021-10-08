@@ -17,14 +17,16 @@ app.use(express.json())
 
 //Route
 const createProductRoute = require("./routes/product/createProduct")
-const fetchProductRoute = require("./routes/product/fetchProduct")
+const getAllProductsRoute = require("./routes/product/getAllProducts")
+const getproductByIdRoute = require("./routes/product/getproductById")
 const deleteProductRoute = require("./routes/product/deleteProduct")
 const updateProductRoute = require("./routes/product/updateProduct")
 const authRoute = require("./routes/authentication/auth")
 
 //Middleware
 app.use('/product/create', createProductRoute)
-app.use("/product/fetch", fetchProductRoute)
+app.use("/product/fetch", getAllProductsRoute)
+app.use("/product/", getproductByIdRoute)
 app.use("/product/delete", deleteProductRoute)
 app.use("/product/update", updateProductRoute)
 app.use("/api/user", authRoute)

@@ -1,4 +1,3 @@
-
 const express = require('express')
 //for routing
 const router = express.Router()
@@ -7,19 +6,13 @@ var productData = require('../../models/product-model')
 
 // FETCH 
 router.get('/', async (req, res) => {
-    if(req.get("_id") != ""){
-        try{
-        const id = await productData.findById(req.get("_id"))
-        res.send(id)
-        } catch(err){
-            res.send({message: err})
-        }
-    } else {
+    try{
         productData.find({}).then((DBitems) => { 
             res.send(DBitems)
         })
+    } catch(err){
+        res.send({message: err})
     }
 })
-
 
 module.exports = router
